@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Flipkart Clone</title>
+        <style>
+            * {
+                font-family: 'Segoe UI', Tahoma;
+                margin: 0;
+            }
+            body {
+                overflow-y: hidden;
+            }
+            .item {
+                margin: 5px;
+                width: 250px;
+                height: 380px;
+                border: 1.5px solid rgb(25, 25, 25);
+                box-shadow: 7.5px 7.5px rgba(25, 25, 25, 0.1);
+            }
+            .item-title {
+                text-align: center;
+                padding: 10px;
+                font-size: 25px;
+                font-weight: 600;
+            }
+            .item-image {
+                width: 250px;
+                height: 150px;
+                background-color: rgb(25, 25, 25);
+                margin-bottom: 5px;
+            }
+            .item-rate {
+                font-size: 20px;
+                font-weight: 700;
+                text-align: center;
+                font-style: italic;
+            }
+            .item-body {
+                padding: 10px;
+            }
+            .add-button > button{
+                width: 45%;
+                margin: 5px;
+                font-weight: 500;
+                padding: 5px;
+                text-align: center;
+            }
+
+            .navbar {
+                display: flex;
+                height: 75px;
+                box-shadow: 7.5px 7.5px rgba(25, 25, 25, 0.1);
+                align-items: center;
+                border: 1.5px solid rgb(25, 25, 25);
+                justify-content: space-between;
+            }
+
+            .navbar-title {
+                padding: 10px;
+            }
+
+            .nav-items ul {
+                display: flex;
+                align-items: center;
+                list-style: none;
+            }
+
+            .nav-items ul > li {
+                padding: 15px;
+                margin: 10px;
+                font-weight: bold;
+            }
+
+            .avatar {
+                width: 45px;
+                height: 45px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                border-radius: 50%;
+                background-color: rgb(25, 25, 25);
+            }
+
+            .main-content {
+                display: flex;
+            }
+
+            .left-side {
+                flex: 25%;
+                padding: 25px;
+                height: 82.5vh;
+                overflow-y: scroll;
+                border: 2px solid black;
+                box-shadow: 7.5px 7.5px rgba(25, 25, 25, 0.1);
+            }
+            .right-side {
+                flex: 75%;
+                flex-wrap: wrap;
+                padding: 15px;
+                display: flex;
+                height: 85.25vh;
+                overflow-y: scroll;
+                justify-content: space-evenly;
+                border: 2px solid black;
+                box-shadow: 7.5px 7.5px rgba(25, 25, 25, 0.1);
+            }
+
+            .cart-body {
+                margin-left: 25px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+
+            .cart-title {
+                text-transform: uppercase;
+                text-align: center;
+            }
+
+            .cart-total {
+                width: 150px;
+                height: 30px;
+                margin: 0 auto;
+                display: flex;
+                padding: 10px;
+                align-items: center;
+                justify-content: space-evenly;
+                border: 2px solid rgb(25, 25, 25);
+            }
+
+            #total {
+                font-size: 25px;
+                font-style: italic;
+                font-weight: 500;
+            }
+
+            table {
+                margin-bottom: 10px;
+                border-collapse: collapse;
+            }
+
+            th, td {
+                padding: 7.5px;
+                text-align: center;
+                border: 2px solid rgb(25, 25, 25);
+            }
+
+            #no-items {
+                color: red;
+                font-style: italic;
+                text-align: center;
+                font-weight: 500;
+                margin: 10px 0 10px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="navbar-title">
+                <h3>Flipkart Clone</h3>
+            </div>
+            <div class="nav-items">
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Cart</li>
+                    <li>
+                        <div class="avatar">
+                            VP
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="left-side">
+                <div class="cart-title"><h3>My Cart</h3></div>
+                <div class="cart-body">
+                    <div id="no-items">
+                        --- Please Add Items To Cart ---
+                    </div>
+                    <table id="bill">
+                        <tr>
+                            <th>PID</th>
+                            <th>NAME</th>
+                            <th>RATE</th>
+                            <th>NUM</th>
+                            <th>PRICE</th>
+                        </tr>
+                        <tr id="1"></tr>
+                        <tr id="2"></tr>
+                        <tr id="3"></tr>
+                        <tr id="4"></tr>
+                        <tr id="5"></tr>
+                        <tr id="6"></tr>
+                        <tr id="7"></tr>
+                        <tr id="8"></tr>
+                        <tr id="9"></tr>
+                        <tr id="10"></tr>
+                        <tr id="11"></tr>
+                        <tr id="12"></tr>
+                        <tr id="13"></tr>
+                        <tr id="14"></tr>
+                        <tr id="15"></tr>
+                        <tr id="16"></tr>
+                        <tr id="17"></tr>
+                        <tr id="18"></tr>
+                        <tr id="19"></tr>
+                        <tr id="20"></tr>
+                    </table>
+                </div>
+                <div class="cart-total">
+                    <div><h3>TOTAL</h3></div>
+                    <div id="total">$ 0</div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="item">
+                    <div class="item-title">Product 1</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 140
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(1)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(1)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 2</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 90
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(2)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(2)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 3</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 120
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(3)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(3)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 4</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 165
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(4)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(4)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 5</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 34
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(5)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(5)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 6</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 112
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(6)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(6)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 7</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 189
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(7)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(7)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 8</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 140
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(8)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(8)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 9</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 210
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(9)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(9)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 10</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 45
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(10)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(10)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 11</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 190
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(11)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(11)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 12</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 189
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(12)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(12)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 13</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 99
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(13)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(13)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 14</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 199
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(14)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(14)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 15</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 299
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(15)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(15)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 16</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 89
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(16)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(16)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 17</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 149
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(17)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(17)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 18</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 249
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(18)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(18)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 19</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 69
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(19)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(19)"> Remove </button>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-title">Product 20</div>
+                    <div class="item-image"></div>
+                    <div class="item-body">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum quod perspiciatis adipisci voluptatum nemo dolor.
+                    </div>
+                    <div class="item-rate">
+                        $ 219
+                    </div>
+                    <div class="add-button">
+                        <button class="add" onclick="addToCart(20)"> Add to Cart </button>
+                        <button class="drop" onclick="dropFromCart(20)"> Remove </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            let P = [ 140, 90, 120, 165, 34, 112, 189, 140, 210, 45, 190, 189, 99, 199, 299, 89, 149, 249, 69, 219 ], total = 0, totalprice = 0;
+            let C = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+            function setState() {
+                total = 0, totalprice = 0;
+                for(let i = 0; i < C.length; i++)   {
+                    total += C[i];
+                    totalprice += P[i] * C[i];
+                }
+                console.log(C, total, totalprice);
+            }
+            function checkTotal() {
+                setState();
+                if(total === 0) {
+                    document.getElementById('bill').style.display = 'none';
+                    document.getElementById('no-items').style.display = 'block';
+                    return false;
+                }   else {
+                    document.getElementById('bill').style.display = 'block';
+                    document.getElementById('no-items').style.display = 'none';
+                    return true;
+                }
+            }
+            function reflectTable() {
+                if(checkTotal())    {
+                    for(let i = 0; i < C.length; i++) {
+                        if(C[i] > 0)    {
+                            document.getElementById((i + 1) + '').innerHTML = 
+                                '<td>' + (i + 1) + '</td>' +
+                                '<td>' + 'Product ' + (i + 1) + '</td>' +
+                                '<td>' + P[i] + '</td>' +
+                                '<td>' + C[i] +'</td>' +
+                                '<td>' + P[i] * C[i] + '</td>';
+                        }   else document.getElementById((i + 1) + '').innerHTML = "";
+                    }   
+                }   document.getElementById('total').innerHTML = ' $ ' + totalprice;
+            }
+            function addToCart(PID) {
+                C[PID - 1]++;
+                reflectTable();
+            }
+            function dropFromCart(PID) {
+                if(C[PID - 1] > 0) C[PID - 1]--;
+                reflectTable();
+            }   reflectTable();
+        </script>
+    </body>
+</html>
